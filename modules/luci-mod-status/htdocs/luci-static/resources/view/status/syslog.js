@@ -205,7 +205,10 @@ return view.extend({
 		filterTextInvert.addEventListener('change', handleLogFilterChange);
 
 		return E([], [
-			E('h2', {}, [ _('System Log') ]),
+			E('div', { 'style': 'display:flex; align-items:center; gap:5rem; padding-bottom:1rem' }, [
+				E('h2', {}, [ _('System Log') ]),
+				scrollDownButton
+         ]),
 			E('div', { 'id': 'content_syslog' }, [
 				E('div', { 'style': 'margin-bottom:10px' }, [
 					E('label', { 'for': 'invertLogFacilitySearch', 'style': 'margin-right:5px' }, _('Not')),
@@ -230,8 +233,7 @@ return view.extend({
 					'readonly': 'readonly',
 					'wrap': 'off',
 					'rows': loglines.rows,
-				}, [ loglines.value ]),
-				E('div', {'style': 'padding-bottom: 20px'}, [scrollUpButton])
+				}, [ loglines.value ])
 			])
 		]);
 	},
