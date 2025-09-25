@@ -85,6 +85,10 @@ return baseclass.extend({
 		    macaddr = data[2],
 		    isReadonlyView = !L.hasViewPermission();
 
+		if (leases.length < 1 && leases6.length < 1) {
+			return E([]);
+		}
+
 		for (var i = 0; i < hosts.length; i++) {
 			var host = hosts[i];
 
@@ -207,12 +211,17 @@ return baseclass.extend({
 			return rows;
 		}, this)), E('em', _('There are no active leases')));
 
-		return E([
-			E('h3', _('Active DHCP Leases')),
-			table,
-			E('h3', _('Active DHCPv6 Leases')),
-			table6
-		]);
+		var result = [];
+
+		if (leases.length > 0) {
+			result.push(E('h3', _('Active DHCP Leases')), table)
+		}
+
+		if (leases6.length > 0) {
+			result.push(E('h3', _('Active DHCPv6 Leases')), table6)
+		}
+
+		return E(result);
 	},
 
 	render: function(data) {
