@@ -55,7 +55,7 @@ function renderbox(ifc, ipv6, dhcpv6_stats) {
 	return E('div', { class: 'ifacebox' }, [
 		E('div', { class: 'ifacebox-head center ' + (active ? 'active' : '') },
 			E('strong', ipv6 ? _('IPv6 Upstream') : _('IPv4 Upstream'))),
-		E('div', { class: 'ifacebox-body left' }, [
+		E('div', { class: 'ifacebox-body left span-flex' }, [
 			L.itemlist(E('span'), [
 				_('Protocol'), ifc.getI18n() || E('em', _('Not connected')),
 				...addEntries(_('Prefix Delegated'), ipv6 ? ifc.getIP6Prefixes?.() : null),
