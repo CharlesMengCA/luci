@@ -177,14 +177,6 @@ return baseclass.extend({
 	},
 
 	render: function(data) {
-		const check_upgrades = uci.get_bool('luci', 'main', 'check_for_newer_firmwares') ?? false;
-		const isReadonlyView = !L.hasViewPermission();
-
-		let perform_check_pref = E('input', { type: 'checkbox', 'click': L.bind(this.handleSetUpgradeCheck, this, !check_upgrades), });
-		perform_check_pref.checked = check_upgrades;
-
-		let perform_check_pref_p = E('div', [_('Look online for upgrades upon status page load') + ' ', perform_check_pref]);
-
-		return E('div', [!isReadonlyView ? perform_check_pref_p : '']);
+		return E('div', ['']);
 	}
 });
