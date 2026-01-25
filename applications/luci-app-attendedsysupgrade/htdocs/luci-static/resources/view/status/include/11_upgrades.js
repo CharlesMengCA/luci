@@ -180,32 +180,6 @@ return baseclass.extend({
 	},
 
 	render: function(data) {
-		const isReadOnlyView = !L.hasViewPermission();
-		if (isReadOnlyView)
-			return null;
-
-		let check_upgrades = uci.get(...check_setting);
-		if (check_upgrades != null)
-			return null;
-
-		let modal_body = [
-			E('p',  _('Checking for firmware upgrades requires access to several files ' +
-			  'on the downloads site, so requires internet access.')),
-
-			E('p',  _('The check will be performed every time the Status -> Overview page is loaded.')),
-
-			E('p', _('You have not yet specified a preference for this setting. ' +
-			  'Once set, this dialog will not be shown again, but you can go to ' +
-			  'System -> Attended Sysupgrade configuration to change the setting.')),
-
-			E('div', { class: 'right' }, [
-				E('div', { class: 'btn', click: () => setSetUpgradeCheck(true)  }, _('Yes, enable checking')),
-				E('div', { class: 'btn', click: () => setSetUpgradeCheck(false) }, _('No, disable checking')),
-				E('div', { class: 'btn', click: ui.hideModal }, _('Close')),
-			]),
-		];
-		ui.showModal(_('Check online for firmware upgrades'), modal_body);
-
 		return null;
 	}
 });
