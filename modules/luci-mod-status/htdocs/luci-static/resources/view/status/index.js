@@ -126,22 +126,8 @@ return view.extend({
 			includes[i].hide = localStorage.getItem(includes[i].id) == 'hide';
 
 			var container = E('div');
-
-			rv.appendChild(E('div', { 'class': 'cbi-section', 'style': 'display: none' }, [
-				E('div', { 'class': 'cbi-title' },[
-					E('h3', { 'style': 'display: flex; justify-content: space-between' }, [
-						title || '-',
-						E('span', {
-							'class': includes[i].hide ? 'label notice' : 'label',
-							'style': 'display: flex; align-items: center; justify-content: center; min-width: 4em',
-							'data-style': includes[i].hide ? 'active' : 'inactive',
-							'data-indicator': 'poll-status',
-							'data-clickable': 'true',
-							'click': ui.createHandlerFn(this, 'handleToggleSection',
-										    includes[i], container)
-						}, [ _(includes[i].hide ? 'Show' : 'Hide') ])
-					]),
-				]),
+			rv.appendChild(E('div', { 'class': 'cbi-section', 'style': 'display:none' }, [
+				title != '' ? E('h3', title) : '',
 				container
 			]));
 
