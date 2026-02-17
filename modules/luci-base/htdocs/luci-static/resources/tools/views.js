@@ -165,13 +165,14 @@ var CBILogreadBox = function(logtag, name) {
 				'id': 'invertLogFacilitySearch',
 				'type': 'checkbox',
 				'class': 'cbi-input-checkbox',
+				'title': 'Invert facility search',
 			});
 
 			// Create facility select-dropdown from facilities map
 			const facilitySelect = E('select', {
 				'id': 'logFacilitySelect',
 				'class': 'cbi-input-select',
-				'style': 'margin-bottom:10px',
+				'style': 'margin:0 5px; width:150px',
 			},
 			this.facilities.map(([ , val, label]) =>
 				(val == 'any') ? E('option', { value: val, selected: '' }, label) : E('option', { value: val }, label)
@@ -182,12 +183,14 @@ var CBILogreadBox = function(logtag, name) {
 				'id': 'invertLogSeveritySearch',
 				'type': 'checkbox',
 				'class': 'cbi-input-checkbox',
+				'title': 'Invert severity search',
 			});
 
 			// Create severity select-dropdown from facilities map
 			const severitySelect = E('select', {
 				'id': 'logSeveritySelect',
 				'class': 'cbi-input-select',
+				'style': 'margin:0 5px; width:120px',
 			},
 			this.severity.map(([ , val, label]) =>
 				(val == 'any') ? E('option', { value: val, selected: '' }, label) : E('option', { value: val }, label)
@@ -198,12 +201,14 @@ var CBILogreadBox = function(logtag, name) {
 				'id': 'invertLogTextSearch',
 				'type': 'checkbox',
 				'class': 'cbi-input-checkbox',
+				'title': 'Invert text search',
 			});
 
 			// Create raw text search text input
 			const filterTextInput = E('input', {
 				'id': 'logTextFilter',
 				'class': 'cbi-input-text',
+				'style': 'margin:0 5px',
 			});
 
 			// Create max rows input
@@ -211,6 +216,7 @@ var CBILogreadBox = function(logtag, name) {
 				'id': 'logMaxRows',
 				'type': 'number',
 				'class': 'cbi-input',
+				'style': 'margin:0 5px; width:120px',
 			});
 
 			/**
@@ -239,25 +245,28 @@ var CBILogreadBox = function(logtag, name) {
 				E('h2', {}, [ this.logName ]),
 				E('div', { 'id': 'content_syslog' }, [
 					E('div', { class: 'cbi-section-descr' }, this.logTagFilter ? _('The syslog output, pre-filtered for messages related to: ' + this.logTagFilter) : '') ,
-					E('div', { 'style': 'margin-bottom:10px' }, [
-						E('label', { 'for': 'invertLogFacilitySearch', 'style': 'margin-right:5px' }, _('Not')),
-						facilityInvert,
-						E('label', { 'for': 'logFacilitySelect', 'style': 'margin: 0 5px' }, _('facility:')),
-						facilitySelect,
-						E('label', { 'for': 'invertLogSeveritySearch', 'style': 'margin: 0 5px' }, _('Not')),
-						severityInvert,
-						E('label', { 'for': 'logSeveritySelect', 'style': 'margin: 0 5px' }, _('severity:')),
-						severitySelect,
+					E('div', { 'style': 'margin-bottom:16px; display:flex; flex-wrap:wrap; gap:16px 32px' }, [
+						scrollDownButton,
+						E('div', {}, [
+							E('label', { 'for': 'logFacilitySelect', 'style': 'margin: 0 5px' }, _('Facility:')),
+							facilitySelect,
+							facilityInvert
+						]),
+						E('div', {}, [
+							E('label', { 'for': 'logSeveritySelect', 'style': 'margin: 0 5px' }, _('Severity:')),
+							severitySelect,
+							severityInvert
+						]),
+						E('div', {}, [
+							E('label', { 'for': 'logTextFilter', 'style': 'margin: 0 5px' }, _('Including:')),
+							filterTextInput,
+							filterTextInvert,
+						]),
+						E('div', {}, [
+							E('label', { 'for': 'logMaxRows', 'style': 'margin: 0 5px' }, _('Max rows:')),
+							filterMaxRows,
+						])
 					]),
-					E('div', { 'style': 'margin-bottom:10px' }, [
-						E('label', { 'for': 'invertLogTextSearch', 'style': 'margin-right:5px' }, _('Not')),
-						filterTextInvert,
-						E('label', { 'for': 'logTextFilter', 'style': 'margin: 0 5px' }, _('including:')),
-						filterTextInput,
-						E('label', { 'for': 'logMaxRows', 'style': 'margin: 0 5px' }, _('Max rows:')),
-						filterMaxRows,
-					]),
-					E('div', {'style': 'padding-bottom: 20px'}, [scrollDownButton]),
 					E('textarea', {
 						'id': 'syslog',
 						'style': 'font-size:12px',
