@@ -2653,3 +2653,18 @@ body[data-page='admin-status-overview'] .cbi-title .label.notice:hover {
 }
 
 /* === END STATUS OVERVIEW: HIDE/SHOW BUTTONS === */
+
+.span-flex > span:first-child {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	column-gap: 2em;
+}
+
+.span-flex > span:first-child br {
+	display: none !important;
+}
+
+.cbi-title > div > span {
+    display: none;
+}
